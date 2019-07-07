@@ -1,4 +1,4 @@
-# Libvirt-for-VFIO-ThreadRipper-
+# Libvirt-for-VFIO-ThreadRipper
 Libvirt for VFIO and ThreadRipper 
 
 # Notes:
