@@ -8,7 +8,7 @@ Libvirt for VFIO and ThreadRipper
 ```
 
 ## Use Arch Kernel 5.1.16 with patches 
-* **Linux Kernel with acs-overrides, ThreadRipper patches**
+* **Linux Kernel with acs-overrides patches**
   * **Ref:** https://github.com/net-error/VFIO-ThreadRipper-arch1
 
 ## Regression: QEMU 4.0 hangs the host
