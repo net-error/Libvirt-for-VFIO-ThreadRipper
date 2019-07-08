@@ -3,7 +3,7 @@ Libvirt for VFIO and ThreadRipper
 
 # Notes:
 ```
-  The following is my notes to get my threadripper AMD system to run VFIO.
+  The following are my notes to get my threadripper AMD system to run VFIO.
   Any corrections are more than welcomed.
 ```
 
