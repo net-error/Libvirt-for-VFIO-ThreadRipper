@@ -83,7 +83,6 @@ Libvirt for VFIO and ThreadRipper
     <nvram>/var/lib/libvirt/qemu/nvram/WIN10_VARS.fd</nvram>
   </os>
 ```
-
 * **Ref:** https://forum.level1techs.com/t/increasing-vfio-vga-performance/133443
 
 ## Nvidia VGA passthrough fixes
@@ -102,7 +101,6 @@ Libvirt for VFIO and ThreadRipper
       <hidden state='on'/>
     </kvm>
 ```
- 
-  * Pure EFI will allow Nvidia VGA passthrough
 
-* **Ref:** https://forum.level1techs.com/t/increasing-vfio-vga-performance/133443
+* **Ref:** https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#%22Error_43:_Driver_failed_to_load%22_on_Nvidia_GPUs_passed_to_Windows_VMs
+
