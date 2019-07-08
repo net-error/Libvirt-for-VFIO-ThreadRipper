@@ -104,3 +104,36 @@ Libvirt for VFIO and ThreadRipper
 
 * **Ref:** https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#%22Error_43:_Driver_failed_to_load%22_on_Nvidia_GPUs_passed_to_Windows_VMs
 
+## Use host-passthrough and topoext for AMD cpus. 
+* **Add: Guest xml**
+```
+  <cpu mode='host-passthrough' check='none'>
+    <topology sockets='1' cores='6' threads='2'/>
+    <cache level='3' mode='emulate'/>
+    <feature policy='require' name='topoext'/>
+  </cpu>
+```
+
+* **Ref:** https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#Improving_performance_on_AMD_CPUs
+
+## Use looking-glass and scream.
+  ###### looking-glass is low latency virtual monitor using ivshmem
+  ###### sream is low latency virtual audio using ivshmem
+
+* **Add: Guest xml**
+```
+    <shmem name='looking-glass'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>64</size>
+      <address type='pci' domain='0x0000' bus='0x0b' slot='0x01' function='0x0'/>
+    </shmem>
+    <shmem name='scream-ivshmem'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>2</size>
+      <address type='pci' domain='0x0000' bus='0x0c' slot='0x07' function='0x0'/>
+    </shmem>
+
+```
+  **Ref:** https://looking-glass.hostfission.com/
+  **Ref:** https://github.com/duncanthrax/scream
+  
