@@ -44,7 +44,7 @@ Libvirt for VFIO and ThreadRipper
 <domain type='kvm'>
   ...
   ...
-<iothreads>2</iothreads>
+  <iothreads>2</iothreads>
   ...
 ```
 
@@ -69,3 +69,40 @@ Libvirt for VFIO and ThreadRipper
     <iothreadpin iothread='1' cpuset='0-1'/>    
   </cputune>
 ```
+**Ref:** https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF#CPU_pinning
+
+## Use Q35 chipset and Pure EFI
+  * Q35 will allow PCIE speeds
+  * Pure EFI will allow Nvidia VGA passthrough
+
+* **Add: Guest xml**
+```
+  <os>
+    <type arch='x86_64' machine='pc-q35-4.0'>hvm</type>
+    <loader readonly='yes' type='pflash'>/usr/share/ovmf-x64/OVMF_CODE-pure-efi.fd</loader>
+    <nvram>/var/lib/libvirt/qemu/nvram/WIN10_VARS.fd</nvram>
+  </os>
+```
+
+* **Ref:** https://forum.level1techs.com/t/increasing-vfio-vga-performance/133443
+
+## Nvidia VGA passthrough fixes
+  * Add vendor_id to hyperv to fix Nvidia code 43.
+```
+    <hyperv>
+      <relaxed state='on'/>
+      <vapic state='on'/>
+      <spinlocks state='on' retries='8191'/>
+      <vendor_id state='on' value='123456789012'/>
+    </hyperv>
+```
+  * Hide KVM from windows to fix Nvidia code 43.
+```
+    <kvm>
+      <hidden state='on'/>
+    </kvm>
+```
+ 
+  * Pure EFI will allow Nvidia VGA passthrough
+
+* **Ref:** https://forum.level1techs.com/t/increasing-vfio-vga-performance/133443
