@@ -11,6 +11,14 @@ Libvirt for VFIO and ThreadRipper
 * **Linux Kernel with acs-overrides patches**
   * **Ref:** https://github.com/net-error/VFIO-ThreadRipper-arch1
 
+
+## Add acs-overrides options to GRUB_CMDLINE_LINUX in /etc/default/grub
+* **Remember to rebuild "grub-mkconfig -o /boot/grub/grub.cfg"**
+* **My GRUB_CMDLINE_LINUX as an example**
+```  
+GRUB_CMDLINE_LINUX=".... amdgpu.dc=1 amdgpu.audio=1 rdblacklist=nouveau amd_iommu=on pcie_acs_override=downstream,multifunction vfio-pci.disable_idle_d3=1"
+```
+
 ## Regression: QEMU 4.0 hangs the host
 * **Fix:** Add `ernel_irqchip=on` or `<ioapic driver='kvm'/>` to guest xml.
 
